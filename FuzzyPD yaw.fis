@@ -1,0 +1,49 @@
+[System]
+Name='FuzzyPD yaw'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='e'
+Range=[-2 2]
+NumMFs=3
+MF1='up':'trapmf',[-3.44 -2.16 -0.302 -0.0688]
+MF2='stand':'trimf',[-0.1322 0 0.1323]
+MF3='down':'trapmf',[0.0688 0.312 2.16 3.44]
+
+[Input2]
+Name='de'
+Range=[-2 2]
+NumMFs=3
+MF1='neg':'trapmf',[-3.44 -2.16 -0.2488 -0.08992]
+MF2='eq':'trimf',[-0.164 0 0.164]
+MF3='pos':'trapmf',[0.111 0.2274 2.54 3.272]
+
+[Output1]
+Name='u'
+Range=[-0.1 0.1]
+NumMFs=5
+MF1='dm':'trapmf',[-0.145 -0.105 -0.0695 -0.06534]
+MF2='d':'trapmf',[-0.07274 -0.0625 -0.0098 -0.00238]
+MF3='s':'trimf',[-0.005556 0.00106 0.0066]
+MF4='u':'trapmf',[0.0045 0.0114 0.0675 0.07804]
+MF5='um':'trapmf',[0.07062 0.0755 0.105 0.145]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 2 (1) : 1
+1 3, 4 (1) : 1
+2 1, 2 (1) : 1
+2 2, 3 (1) : 1
+2 3, 4 (1) : 1
+3 1, 3 (1) : 1
+3 2, 4 (1) : 1
+3 3, 5 (1) : 1
